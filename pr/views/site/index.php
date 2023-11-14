@@ -1,53 +1,32 @@
 <?php
 
-/** @var yii\web\View $this */
+use yii\bootstrap5\Html;
+use yii\helpers\Url;
 
-$this->title = 'My Yii Application';
+$this->title = 'Список кружков';
+
 ?>
-<div class="site-index">
-
-    <div class="jumbotron text-center bg-transparent mt-5 mb-5">
-        <h1 class="display-4">Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+<h1 class="text-center"><?= Html::encode($this->title) ?></h1><br>
+<div class="card-group">
+    <?php foreach ($coteries as $item): ?>
+        <div class="card">
+            <img src="img/<?php echo $item['image'] ?>" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $item['title'] ?></h5>
+                <p class="card-text"><?php echo $item['description'] ?></p>
+                <p class="card-text"><small class="text-muted">Для детей с <b><?php echo $item['from_age'] ?></b>
+                        лет</small></p>
+                <div class="d-flex flex-row justify-content-between w-50">
+                    <a href="<?php echo Url::toRoute('proposal') ?>"><img src="img/add.png" style="width: 25px;"
+                                                                          title="Записаться на кружок"></a>
+                    <a href="<?php echo Url::toRoute(['schedule', 'id' => $item['id']]) ?>"><img src="img/schedule.png"
+                                                                                                 style="width: 25px;"
+                                                                                                 title="Посмотреть расписание"></a>
+                    <a href="<?php echo Url::toRoute(['detail', 'id' => $item['id']]) ?>"><img src="img/comment.png"
+                                                                                               style="width: 25px;"
+                                                                                               title="Оставить комментарий"></a>
+                </div>
             </div>
         </div>
-
-    </div>
+    <?php endforeach; ?>
 </div>

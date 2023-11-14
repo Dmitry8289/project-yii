@@ -39,8 +39,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Кружки', 'url' => ['/site/coteries']],
+            ['label' => 'Кружки', 'url' => ['/site/index']],
             ['label' => 'Регистрация', 'url' => ['/site/register']],
             Yii::$app->user->isGuest ? (''): (Yii::$app->user->identity->isAdmin() ? (['label' => 'Профиль', 'url' => ['/admin']]):
             (['label' => 'Профиль', 'url' => ['/site/account']])),

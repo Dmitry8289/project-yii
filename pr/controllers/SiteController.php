@@ -73,7 +73,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $coteries = Coterie::find()->asArray()->all();
+        $coterie_id = Coterie::find()->all();
+        return $this->render('index', ['coteries' => $coteries, 'coterie_id' => $coterie_id]);
     }
 
     /**
@@ -147,12 +149,12 @@ class SiteController extends Controller
         return $this->render('register', ['model' => $model]);
     }
 
-    public function actionCoteries()
-    {
-        $coteries = Coterie::find()->asArray()->all();
-        $coterie_id = Coterie::find()->all();
-        return $this->render('coteries', ['coteries' => $coteries, 'coterie_id' => $coterie_id]);//, 'coterie' => $coterie]);
-    }
+//    public function actionCoteries()
+//    {
+//        $coteries = Coterie::find()->asArray()->all();
+//        $coterie_id = Coterie::find()->all();
+//        return $this->render('coteries', ['coteries' => $coteries, 'coterie_id' => $coterie_id]);//, 'coterie' => $coterie]);
+//    }
 
     public function actionProposal()
     {
