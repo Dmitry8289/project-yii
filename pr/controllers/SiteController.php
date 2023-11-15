@@ -173,6 +173,7 @@ class SiteController extends Controller
         if (isset($_GET['id']) && $_GET['id'] != "") {
             $coterie = Coterie::find()->where(['id' => $_GET['id']])->asArray()->all();
             $schedule = Schedule::find()->where(['coterie_id' => $_GET['id']])->all();
+            $printedCoterieName = false;
             return $this->render('schedule', ['schedule' => $schedule, 'coterie' => $coterie]);
         } else {
             return $this->render('coteries');
